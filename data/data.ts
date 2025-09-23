@@ -20,8 +20,9 @@ export interface Project {
 
 export interface SkillItem {
   name: string
-  icon?: any 
+  icon?: React.ComponentType<{ className?: string }>
 }
+
 
 export interface UserData {
   name: string
