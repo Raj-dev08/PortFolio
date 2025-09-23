@@ -93,7 +93,7 @@ export const Skills = () => {
                        className="flex flex-row justify-between gap-4 overflow-scroll no-scrollbar
                       lg:grid lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr">
                         {values.map((skill, i) => {
-                          const Icon = (skill as any).icon
+                          const Icon = skill.icon
                           return (
                             <motion.div
                               key={skill.name}
