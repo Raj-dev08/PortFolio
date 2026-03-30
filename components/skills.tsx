@@ -57,7 +57,7 @@ export const Skills = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
-              className="break-inside-avoid rounded-2xl border border-zinc-800 bg-zinc-900/40 backdrop-blur-md p-5 mb-6 hover:border-zinc-700 transition"
+              className="break-inside-avoid rounded-2xl border border-zinc-800 bg-zinc-900/40 backdrop-blur-md p-5 mb-6 transition"
             >
 
               {/* CATEGORY */}
@@ -86,7 +86,7 @@ export const Skills = () => {
                       className={`flex items-center gap-2 px-2.5 py-1 rounded-full text-xs border transition ${
                         isMatch
                           ? "bg-purple-500/20 border-purple-500 text-white"
-                          : "bg-zinc-950/40 border-zinc-800 text-zinc-300 hover:border-zinc-600 hover:text-white"
+                          : "bg-zinc-950/40 border-zinc-800 text-zinc-300 "
                       }`}
                     >
                       {Icon && <Icon className="text-purple-400 text-xs" />}

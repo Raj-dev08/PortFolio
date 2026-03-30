@@ -1,18 +1,15 @@
 import {
   SiJavascript, SiTypescript, SiPython, SiGo,
-  SiReact, SiNextdotjs, SiTailwindcss, SiGraphql,
-  SiDocker, SiKubernetes, SiAmazon, SiRedis, SiMongodb,
-  SiNodedotjs, SiExpress, SiTerraform, SiGit,
-  SiTensorflow, SiShadcnui, SiNginx, SiNumpy,
-  SiPrometheus, SiPandas, SiScikitlearn, SiExpo, SiLeetcode,
-  SiApachekafka, SiSocketdotio, SiJest 
+  SiReact, SiNextdotjs,
+  SiDocker, SiAmazon, SiRedis, SiMongodb,
+  SiNodedotjs, SiExpress, SiGit,
+  SiPrometheus, SiExpo, SiSocketdotio, SiJest , SiPytorch 
 } from "react-icons/si"
 
 import { FaDatabase } from "react-icons/fa6"
-import { TbBrandFramerMotion, TbApi, TbMatrix, TbVectorBezierCircle } from "react-icons/tb"
+import { TbMatrix, TbVectorBezierCircle } from "react-icons/tb"
 import { FaJenkins } from "react-icons/fa"
-import { GiDaisy } from "react-icons/gi"
-import { GrSystem, GrUserWorker } from "react-icons/gr"
+import { GrSystem } from "react-icons/gr"
 import { ImTree } from "react-icons/im"
 
 export interface Project {
@@ -75,21 +72,13 @@ export const userData: UserData = {
     frontend: [
       { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },
-      { name: "TailwindCSS", icon: SiTailwindcss },
-      { name: "Shadcn/ui", icon: SiShadcnui },
-      { name: "Framer Motion", icon: TbBrandFramerMotion },
-      { name: "DaisyUI", icon: GiDaisy },
       { name: "Expo", icon: SiExpo }
     ],
 
     backend: [
       { name: "Node.js", icon: SiNodedotjs },
       { name: "Express", icon: SiExpress },
-      { name: "GraphQL", icon: SiGraphql },
-      { name: "REST APIs", icon: TbApi },
       { name: "Socket.IO (Real-time systems)", icon: SiSocketdotio },
-      { name: "Message Queues", icon: SiApachekafka },
-      { name: "Background jobs", icon: GrUserWorker }
     ],
 
     databases: [
@@ -100,27 +89,19 @@ export const userData: UserData = {
 
     devops: [
       { name: "Docker", icon: SiDocker },
-      { name: "Kubernetes", icon: SiKubernetes },
       { name: "CI/CD (Jenkins)", icon: FaJenkins },
-      { name: "NGINX", icon: SiNginx },
       { name: "AWS", icon: SiAmazon },
-      { name: "Terraform", icon: SiTerraform },
-      { name: "Prometheus (Monitoring)", icon: SiPrometheus }
+      { name: "Monitoring", icon: SiPrometheus }
     ],
 
     ai_ml: [
-      { name: "Python", icon: SiPython },
-      { name: "NumPy", icon: SiNumpy },
-      { name: "Pandas", icon: SiPandas },
-      { name: "Scikit-learn", icon: SiScikitlearn },
-      { name: "PyTorch / Neural Networks", icon: SiTensorflow },
+      { name: "PyTorch / Neural Networks", icon: SiPytorch  },
       { name: "Embeddings & Vector Search", icon: TbMatrix },
       { name: "RAG Systems", icon: TbVectorBezierCircle }
     ],
 
     other: [
       { name: "Git", icon: SiGit },
-      { name: "Data Structures & Algorithms", icon: SiLeetcode },
       { name: "System Design", icon: GrSystem },
       { name: "Microservices Architecture", icon: ImTree },
       { name: "Testing", icon: SiJest  },

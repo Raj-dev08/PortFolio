@@ -125,7 +125,7 @@ export const Projects = () => {
             transition={{ duration: 0.2, delay: idx * 0.03 }}
             className="break-inside-avoid"
           >
-            <Card className="bg-zinc-950 border border-zinc-800 hover:border-zinc-700 transition">
+            <Card className="bg-zinc-950 border border-zinc-800  transition">
 
               <CardHeader className="pb-2">
                 <div className="flex justify-between">
