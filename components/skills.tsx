@@ -2,31 +2,23 @@
 
 import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
-import { userData } from "@/data/data"
+import { userData, SkillCategory, SkillItem } from "@/data/data"
 
 export const Skills = () => {
   const { skills } = userData
   const [query, setQuery] = useState("")
 
-  // filter skills based on search
   const filteredSkills = useMemo(() => {
-    if (!query.trim()) return skills
-
     const q = query.toLowerCase()
 
-    const result: typeof skills = {}
-
-    Object.entries(skills).forEach(([category, values]) => {
-      const matched = values.filter((skill) =>
-        skill.name.toLowerCase().includes(q)
-      )
-
-      if (matched.length > 0) {
-        result[category] = matched
-      }
-    })
-
-    return result
+    return Object.fromEntries(
+      (Object.keys(skills) as SkillCategory[]).map((category) => [
+        category,
+        skills[category].filter((skill) =>
+          skill.name.toLowerCase().includes(q)
+        ),
+      ])
+    ) as Record<SkillCategory, SkillItem[]>
   }, [query, skills])
 
   return (
@@ -42,19 +34,12 @@ export const Skills = () => {
           Backend-heavy fullstack • DevOps • AI systems
         </p>
 
-        {/* SEARCH */}
         <div className="mt-6 flex justify-center">
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search skills (e.g. Redis, Docker, AI...)"
-            className="
-              w-full max-w-md px-4 py-2 rounded-xl
-              bg-zinc-900/60 border border-zinc-800
-              text-sm text-white placeholder-zinc-500
-              outline-none focus:border-zinc-600
-              transition
-            "
+            className="w-full max-w-md px-4 py-2 rounded-xl bg-zinc-900/60 border border-zinc-800 text-sm text-white placeholder-zinc-500 outline-none focus:border-zinc-600 transition"
           />
         </div>
       </div>
@@ -62,67 +47,58 @@ export const Skills = () => {
       {/* MASONRY */}
       <div className="max-w-6xl mx-auto px-6 columns-1 sm:columns-2 lg:columns-3 gap-6">
 
-        {Object.entries(filteredSkills).map(([key, values], index) => (
-          <motion.div
-            key={key}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.05 }}
-            className="
-              break-inside-avoid
-              rounded-2xl border border-zinc-800
-              bg-zinc-900/40 backdrop-blur-md
-              p-5 mb-6
-              hover:border-zinc-700 transition
-            "
-          >
+        {(Object.keys(filteredSkills) as SkillCategory[]).map((key, index) => {
+          const values = filteredSkills[key]
+          if (!values.length) return null
 
-            {/* CATEGORY */}
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-medium text-zinc-200 capitalize">
-                {key.replace("_", " ")}
-              </h3>
+          return (
+            <motion.div
+              key={key}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+              className="break-inside-avoid rounded-2xl border border-zinc-800 bg-zinc-900/40 backdrop-blur-md p-5 mb-6 hover:border-zinc-700 transition"
+            >
 
-              <span className="text-xs text-zinc-500">
-                {values.length}
-              </span>
-            </div>
+              {/* CATEGORY */}
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-medium text-zinc-200 capitalize">
+                  {key.replace("_", " ")}
+                </h3>
 
-            {/* SKILLS */}
-            <div className="flex flex-wrap gap-2">
-              {values.map((skill) => {
-                const Icon = skill.icon
+                <span className="text-xs text-zinc-500">
+                  {values.length}
+                </span>
+              </div>
 
-                const isMatch =
-                  query &&
-                  skill.name.toLowerCase().includes(query.toLowerCase())
+              {/* SKILLS */}
+              <div className="flex flex-wrap gap-2">
+                {values.map((skill) => {
+                  const Icon = skill.icon
 
-                return (
-                  <span
-                    key={skill.name}
-                    className={`
-                      flex items-center gap-2
-                      px-2.5 py-1 rounded-full
-                      text-xs
-                      border transition
-                      ${
+                  const isMatch =
+                    query.trim().length > 0 &&
+                    skill.name.toLowerCase().includes(query.toLowerCase())
+
+                  return (
+                    <span
+                      key={skill.name}
+                      className={`flex items-center gap-2 px-2.5 py-1 rounded-full text-xs border transition ${
                         isMatch
                           ? "bg-purple-500/20 border-purple-500 text-white"
                           : "bg-zinc-950/40 border-zinc-800 text-zinc-300 hover:border-zinc-600 hover:text-white"
-                      }
-                    `}
-                  >
-                    {Icon && (
-                      <Icon className="text-purple-400 text-xs" />
-                    )}
-                    {skill.name}
-                  </span>
-                )
-              })}
-            </div>
+                      }`}
+                    >
+                      {Icon && <Icon className="text-purple-400 text-xs" />}
+                      {skill.name}
+                    </span>
+                  )
+                })}
+              </div>
 
-          </motion.div>
-        ))}
+            </motion.div>
+          )
+        })}
 
       </div>
     </section>

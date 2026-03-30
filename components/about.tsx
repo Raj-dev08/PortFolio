@@ -31,7 +31,7 @@ export const About = () => {
         {/* ABOUT TEXT */}
         <div className="text-sm sm:text-base text-zinc-400 space-y-3 leading-relaxed">
           <p>
-            Hi I am Souptik but you can call me Raj , I'm a fullstack developer with devops and ai knowledge
+            Hi I am Souptik but you can call me Raj , I’m a fullstack developer with devops and ai knowledge
           </p>
           
           <p>

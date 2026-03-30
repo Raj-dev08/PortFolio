@@ -140,10 +140,10 @@ export const Terminal = ({setShowTerminal} : {setShowTerminal: (value: boolean) 
         output = ["Command not found. Type 'help'."]
     }
 
-    setHistory((prev: any) => [
+    setHistory((prev: HistoryItem[]) => [
       ...prev,
       { type: "input", text: `$ ${cmd}` },
-      ...output.map((o) => ({ type: "output", text: o })),
+      ...output.map((o) => ({ type: "output" as const, text: o })),
     ])
   }
 
