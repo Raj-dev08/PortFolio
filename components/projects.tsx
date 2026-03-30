@@ -1,144 +1,231 @@
 "use client"
 
-import { useRef } from "react"
+import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { userData } from "@/data/data"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa"
 
-export const Projects = () => {
-  const { projects } = userData
-  const scrollRef = useRef<HTMLDivElement>(null)
+const INITIAL_COUNT = 4
+const LOAD_STEP = 4
 
-  const scroll = (direction: "left" | "right") => {
-    if (!scrollRef.current) return
-    const { scrollLeft, clientWidth } = scrollRef.current
-    const scrollAmount = clientWidth * 0.8 
-    scrollRef.current.scrollTo({
-      left: direction === "left" ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
-      behavior: "smooth",
-    })
+const getTypeStyles = (type?: string) => {
+  switch (type) {
+    case "ai":
+      return "bg-purple-500/10 text-purple-300 border-purple-500/20"
+    case "microservices":
+      return "bg-blue-500/10 text-blue-300 border-blue-500/20"
+    default:
+      return "bg-emerald-500/10 text-emerald-300 border-emerald-500/20"
   }
-
-  return (
-    <div className="flex flex-col">
-      <section id="projects" className="w-full relative text-white pb-16 sm:min-h-[2000px] md:min-h-[1300px] xl:min-h-[1000px]">
-        <div className="w-full h-[500px] bg-half-radial-inverted" />
-
-        <div className="w-full max-w-[2000px] mx-auto px-6 absolute top-0 left-1/2 -translate-x-1/2 z-10 sm:pt-10 flex flex-col items-center">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-black font-mono
-                       bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400
-                       bg-clip-text text-transparent drop-shadow-lg text-center mb-12 mt-8"
-          >
-            Projects
-          </motion.h2>
-          <div className="relative w-full">
-            <button
-              onClick={() => scroll("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/50 p-2 rounded-full hover:bg-black/70 transition flex sm:hidden"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-6 h-6 text-purple-400" />
-            </button>
-
-            <div
-              ref={scrollRef}
-              className="w-full flex flex-row gap-4 overflow-x-scroll no-scrollbar py-4 px-2
-                         sm:grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 scroll-smooth"
-            >
-              {projects.map((project, idx) => (
-                <motion.div
-                  key={project.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                >
-                  <Card className="bg-neutral-900/70 border-neutral-800 backdrop-blur-xl 
-                                   h-full flex flex-col hover:border-purple-500/40 transition-all min-w-[300px] sm:min-w-[350px] lg:min-w-[400px]">
-                    <CardHeader>
-                      <CardTitle className="text-lg font-semibold text-purple-400">
-                        {project.name}
-                      </CardTitle>
-                      {project.description && (
-                        <CardDescription className="text-zinc-400 text-sm mt-1">
-                          {project.description}
-                        </CardDescription>
-                      )}
-                    </CardHeader>
-                    <CardContent className="flex-1 flex flex-col justify-between space-y-4">
-                      {project.features && (
-                        <ul className="text-sm text-zinc-300 list-disc pl-4 space-y-1">
-                          {project.features.map((f, fIdx) => (
-                            <li key={fIdx}>{f}</li>
-                          ))}
-                        </ul>
-                      )}
-                      {project.link && (
-                       <div className="flex gap-3 w-full mt-4">
-                      
-                      <Button
-                        asChild
-                          className="flex-1 text-white font-semibold shadow-lg rounded-lg py-2
-                          bg-gradient-to-r from-gray-800 via-black to-gray-800
-                          bg-[length:200%_200%] bg-left-top
-                          hover:bg-right-bottom
-                          transition-all duration-700 ease-in-out"
-                      >
-                      
-                        <a href={project.link} target="_blank" rel="noopener noreferrer">
-                          
-                            <FaGithub className="w-4 h-4 mr-2 inline" />
-                            View Github
-                        </a>
-                      </Button>
-
-                    
-                    <Button
-                    asChild
-                    className="relative flex-1 overflow-hidden text-black font-semibold shadow-lg rounded-lg py-2
-                              bg-gradient-to-r from-green-400 via-teal-500 to-cyan-500
-                              transition-all duration-500 ease-in-out
-                              hover:brightness-110
-                              before:absolute before:top-0 before:left-0 before:w-full before:h-full
-                              before:bg-white before:opacity-0 before:blur-[15px] before:transition-opacity before:duration-500
-                              hover:before:opacity-20"
-                  >
-                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 relative z-10">
-                      <FaExternalLinkAlt className="w-4 h-4 inline" />
-                      Live Link
-                    </a>
-                  </Button>
-
-                    </div>
-
-                      )}
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-
-            <button
-              onClick={() => scroll("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/50 p-2 rounded-full hover:bg-black/70 transition flex sm:hidden"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-6 h-6 text-purple-400" />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <div style={{ height: 100 }} aria-hidden className="bg-half-radial" />
-    </div>
-  )
 }
 
+const getStatusStyles = (status?: string) => {
+  switch (status) {
+    case "active":
+      return "bg-green-500/10 text-green-300 border-green-500/20"
+    case "completed":
+      return "bg-zinc-800/40 text-zinc-300 border-zinc-700"
+    case "demo ready":
+      return "bg-yellow-500/10 text-yellow-300 border-yellow-500/20"
+    default:
+      return "bg-zinc-900 text-zinc-400 border-zinc-800"
+  }
+}
 
+export const Projects = () => {
+  const [search, setSearch] = useState("")
+  const [typeFilter, setTypeFilter] = useState("all")
+  const [statusFilter, setStatusFilter] = useState("all")
+  const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT)
+
+  const projects = useMemo(() => {
+    return [...userData.projects].sort((a, b) => a.index - b.index)
+  }, [])
+
+  const filtered = useMemo(() => {
+    return projects.filter((p) => {
+      const q = search.toLowerCase()
+
+      const matchesSearch =
+        p.name.toLowerCase().includes(q) ||
+        p.description?.toLowerCase().includes(q)
+
+      const matchesType = typeFilter === "all" || p.type === typeFilter
+      const matchesStatus = statusFilter === "all" || p.status === statusFilter
+
+      return matchesSearch && matchesType && matchesStatus
+    })
+  }, [projects, search, typeFilter, statusFilter])
+
+  const visibleProjects = filtered.slice(0, visibleCount)
+
+  return (
+    <section className="w-full px-6 py-20 max-w-6xl mx-auto">
+
+      {/* HEADER */}
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold text-white">Projects</h2>
+        <p className="text-zinc-400 text-sm mt-1">
+          Production systems, AI products, and backend-heavy architectures
+        </p>
+
+        {/* SEARCH */}
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search systems, AI, backend, Kafka, Redis..."
+          className="mt-5 w-full px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-white outline-none focus:border-zinc-600"
+        />
+
+        {/* FILTER BAR (ATS STYLE) */}
+        <div className="mt-4 flex flex-wrap gap-2">
+          {["all", "ai", "fullstack", "microservices","mobile"].map((t) => (
+            <button
+              key={t}
+              onClick={() => setTypeFilter(t)}
+              className={`px-3 py-1 text-xs rounded-md border transition ${
+                typeFilter === t
+                  ? "bg-white text-black"
+                  : "border-zinc-700 text-zinc-400 hover:border-zinc-500"
+              }`}
+            >
+              {t.toUpperCase()}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-2 flex flex-wrap gap-2">
+          {["all", "active", "completed", "demo ready"].map((s) => (
+            <button
+              key={s}
+              onClick={() => setStatusFilter(s)}
+              className={`px-3 py-1 text-xs rounded-md border transition ${
+                statusFilter === s
+                  ? "bg-white text-black"
+                  : "border-zinc-700 text-zinc-400 hover:border-zinc-500"
+              }`}
+            >
+              {s.toUpperCase()}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* MASONRY GRID */}
+      <div className="columns-1 md:columns-2 gap-5 space-y-5">
+
+        {visibleProjects.map((project, idx) => (
+          <motion.div
+            key={project.name}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, delay: idx * 0.03 }}
+            className="break-inside-avoid"
+          >
+            <Card className="bg-zinc-950 border border-zinc-800 hover:border-zinc-700 transition">
+
+              <CardHeader className="pb-2">
+                <div className="flex justify-between">
+                  <CardTitle className="text-white text-base">
+                    {project.name}
+                  </CardTitle>
+                  <span className="text-xs text-zinc-500">
+                    #{project.index}
+                  </span>
+                </div>
+
+                <div className="flex gap-2 mt-2 flex-wrap">
+                  {project.type && (
+                    <Badge className={getTypeStyles(project.type)}>
+                      {project.type}
+                    </Badge>
+                  )}
+                  {project.status && (
+                    <Badge className={getStatusStyles(project.status)}>
+                      {project.status}
+                    </Badge>
+                  )}
+                </div>
+              </CardHeader>
+
+              <CardContent className="pt-1">
+
+                {/* DESCRIPTION (ATS FRIENDLY IMPACT LINE) */}
+                <p className="text-sm text-zinc-300 leading-snug">
+                  {project.description}
+                </p>
+
+                {/* FEATURES (SCANABLE) */}
+                <div className="mt-3 space-y-1 text-xs text-zinc-400">
+                  {project.features?.map((f, i) => (
+                    <div key={i} className="flex gap-2">
+                      <span className="w-1 h-1 mt-2 rounded-full bg-zinc-500" />
+                      {f}
+                    </div>
+                  ))}
+                </div>
+
+                {/* ACTIONS */}
+                <div className="flex gap-2 mt-4">
+                  {project.link && (
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="flex-1 bg-white text-black hover:bg-zinc-200"
+                    >
+                      <a href={project.link} target="_blank">
+                        <FaGithub className="mr-2" />
+                        Code
+                      </a>
+                    </Button>
+                  )}
+
+                  {project.liveLink && (
+                    <Button asChild className="flex-1 bg-white text-black hover:bg-zinc-200">
+                      <a href={project.liveLink} target="_blank">
+                        <FaExternalLinkAlt className="mr-2" />
+                        Live
+                      </a>
+                    </Button>
+                  )}
+                </div>
+
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* LOAD MORE / SHOW LESS */}
+      <div className="flex justify-center mt-10 gap-3">
+        {visibleCount < filtered.length && (
+          <Button
+            onClick={() => setVisibleCount((p) => p + LOAD_STEP)}
+            className="bg-zinc-900 border border-zinc-800 text-white hover:bg-zinc-800"
+          >
+            Load More
+          </Button>
+        )}
+
+        {visibleCount > INITIAL_COUNT && (
+          <Button
+            onClick={() => setVisibleCount(INITIAL_COUNT)}
+            className="bg-zinc-900 border border-zinc-800 text-white hover:bg-zinc-800"
+          >
+            Show Less
+          </Button>
+        )}
+      </div>
+
+      {/* EMPTY */}
+      {filtered.length === 0 && (
+        <div className="text-center text-zinc-500 mt-16">
+          No matching systems found
+        </div>
+      )}
+    </section>
+  )
+}

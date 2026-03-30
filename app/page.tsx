@@ -2,13 +2,11 @@
 
 import { Background } from "@/components/background"
 import { Skills } from "@/components/skills"
-import { motion } from "framer-motion"
-import { useState } from "react"
 import { Projects } from "@/components/projects"
 import { About } from "@/components/about"
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
-import { FaRobot } from "react-icons/fa";
+import { FaRobot } from "react-icons/fa"
 import {
   Tooltip,
   TooltipContent,
@@ -16,66 +14,63 @@ import {
 } from "@/components/ui/tooltip"
 
 export default function Home() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-    const colorScheme = [
-      "from-purple-500/30 via-pink-500/30 to-indigo-500/30",
-  ]
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    setMousePos({ x: e.pageX, y: e.pageY })
-  }
-
-
-
   return (
-    <div
-      className="relative flex flex-col min-h-screen bg-black overflow-hidden"
-      onMouseMove={handleMouseMove}
-    >
+    <div className="relative flex flex-col min-h-screen bg-black text-white no-scrollbar">
+
+      {/* NAVBAR */}
       <Navbar />
 
-      <motion.div
-        className={`absolute w-72 h-72 rounded-full pointer-events-none
-                   bg-gradient-to-r ${colorScheme[Math.floor(mousePos.x/100) % colorScheme.length]}
-                   blur-3xl z-10`}
-        animate={{
-          x: mousePos.x - 144,
-          y: mousePos.y - 144,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 100,
-          damping: 30,
-        }}
-      />
+      {/* MAIN CONTENT */}
+      <main className="flex flex-col no-scrollbar">
 
-      <section id="background"><Background /></section>
-      <section id="skills"><Skills /></section>
-      <section id="projects"><Projects /></section>
-      <section id="about"><About /></section>
-      <section id="footer"><Footer /></section>
+        <section id="background" className="pt-10 px-6 max-w-7xl mx-auto w-full">
+          <Background />
+        </section>
 
-      <div className="fixed bottom-4 right-4 lg:right-20 z-20">
+        <section id="skills" className="px-6 max-w-7xl mx-auto w-full">
+          <Skills />
+        </section>
+
+        <section id="projects" className="px-6 max-w-7xl mx-auto w-full">
+          <Projects />
+        </section>
+
+        <section id="about" className="px-6 max-w-5xl mx-auto w-full">
+          <About />
+        </section>
+
+        <section id="footer" className="px-6 max-w-5xl mx-auto w-full">
+          <Footer />
+        </section>
+
+      </main>
+
+      {/* FOOTER */}
+      
+
+      {/* FLOATING AI BUTTON */}
+      <div className="fixed bottom-6 right-6 z-20">
         <Tooltip>
           <TooltipTrigger asChild>
             <a
               href="/chat"
-              className="flex items-center justify-center w-16 h-16 bg-gradient-to-r
-              from-black via-gray-800 to-gray-500  bg-[length:200%_200%] 
-              bg-left-top hover:bg-right-bottom
-              rounded-full shadow-lg hover:shadow-xl transition-all duration-700 ease-in-out
-              border border-purple-400
-              hover:scale-105"
-              title="Chat with AI Assistant"
+              className="
+                flex items-center justify-center
+                w-14 h-14 rounded-full
+                bg-zinc-900 border border-zinc-700
+                shadow-md hover:shadow-lg
+                hover:border-zinc-500
+                transition-all duration-300
+              "
             >
-              <FaRobot className="text-white text-2xl" />
+              <FaRobot className="text-lg text-white" />
             </a>
-            </TooltipTrigger>
-            <TooltipContent className="mr-10 bg-black/80 backdrop-blur-lg">
-              <p className="p-2 text-md font-bold font-mono">Chat with my AI Assistant</p>
+          </TooltipTrigger>
+
+          <TooltipContent className="bg-zinc-900 border border-zinc-700 text-zinc-300">
+            <p className="text-sm">Chat with AI Assistant</p>
           </TooltipContent>
         </Tooltip>
-
       </div>
 
     </div>

@@ -21,11 +21,11 @@ export const Footer = () => {
             className="flex items-center justify-center gap-2 text-gray-400 hover:text-purple-400 transition-colors"
         >
             <FaEnvelope className="w-4 h-4" />
-            {email.split("=")[email.split("=").length - 1]}
+            {email.replace("mailto:", "")}
         </a>
         </h3>
 
-        <h3 className="text-gray-400">Made with ❤️ by Raj | © {new Date().getFullYear()}</h3>
+        <h3 className="text-gray-400">Made by Raj | © {new Date().getFullYear()}</h3>
     </motion.footer>
   )
 }

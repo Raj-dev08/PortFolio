@@ -1,106 +1,109 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { Terminal } from "./terminal"
 
 export const Background = () => {
-  const words = ["Building", "Scalable", "Websites"]
+  const [showTerminal, setShowTerminal] = useState(true)
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setShowTerminal(false)
+    }
+  }, [])
 
   return (
-    <div
-      className="relative flex flex-col justify-center items-start 
-                 min-h-[500px] w-full bg-black"
-    >
-      
-      <div className="flex flex-col mt-28 px-8 lg:px-40 gap-3 absolute">
-        <motion.h1
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="relative inline-block text-4xl sm:text-5xl lg:text-6xl font-black font-mono
-                       bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 
-                       bg-clip-text text-transparent drop-shadow-lg cursor-pointer 
-                       hover:brightness-105 hover:scale-105 transition-all duration-300 ease-out"
-          >
-        Hi, I&apos;m Raj
-      </motion.h1>
-        {words.map((word, i) => (
-          <motion.h2
-            key={word}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              delay: i * 0.3,
-              duration: 0.7,
-              ease: "easeOut",
-            }}
-            className="relative inline-block text-4xl sm:text-5xl lg:text-6xl font-black font-mono
-                       bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 
-                       bg-clip-text text-transparent drop-shadow-lg cursor-pointer 
-                       hover:brightness-105 hover:scale-105 transition-all duration-300 ease-out"
-          >
-            {word}
-          </motion.h2>
-        ))}
+    <section className="w-full min-h-screen flex flex-col bg-black">
 
-        <div className="mt-6 space-y-1 mb-4">
-          {[
-            "Crafting seamless experiences,",
-            "powered by modern tech,",
-            "designed for real impact.",
-          ].map((line, i) => (
-            <motion.span
-              key={line}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: words.length * 0.3 + i * 0.2,
-                duration: 0.6,
-              }}
-              className={`block text-xs sm:text-sm font-bold font-mono cursor-pointer leading-relaxed
-                ${
-                  i === 0 || i === 1
-                    ? "text-gray-400 hover:text-gray-500"
-                    : "text-gray-600 hover:text-gray-700 hover:brightness-105"
-                } mb`}
+      {/* HERO */}
+      <div className="flex-1 flex items-center justify-center md:justify-start px-4 sm:px-6 lg:px-24 py-10">
+        <div className="w-full max-w-3xl space-y-5">
+
+          {/* identity line */}
+          <p className="text-sm sm:text-base md:text-lg font-medium text-zinc-400 tracking-wide">
+            Souptik Sen · 17 · Kolkata, India
+          </p>
+
+          {/* headline */}
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white leading-snug sm:leading-tight">
+            Full-stack engineer building{" "}
+            <span className="text-purple-400">
+              distributed backend systems
+            </span>{" "}
+            and{" "}
+            <span className="text-purple-400">
+              AI-driven products
+            </span>
+          </h1>
+
+          {/* description */}
+          <p className="text-sm sm:text-base lg:text-lg text-zinc-400 max-w-xl sm:max-w-2xl leading-relaxed">
+            Works on production-grade Node.js systems with queues, Redis, microservices,
+            and real-time architecture. Builds AI pipelines using embeddings, RAG,
+            and long-term memory systems.
+          </p>
+
+          {/* tags */}
+          <div className="flex flex-wrap gap-2 sm:gap-3">
+            {[
+              "Backend Systems",
+              "Microservices",
+              "Realtime Architecture",
+              "AI Pipelines"
+            ].map((tag) => (
+              <span
+                key={tag}
+                className="text-xs sm:text-sm text-zinc-300 bg-zinc-900 border border-zinc-800 px-2.5 sm:px-3 py-1 rounded-md"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-3 sm:pt-4 items-stretch sm:items-center">
+            <a
+              href="#projects"
+              className="w-full sm:w-auto text-center px-5 py-2.5 bg-white text-black rounded-md hover:bg-zinc-200"
             >
-              {line}
-            </motion.span>
-          ))}
+              Projects
+            </a>
+
+            <a
+              href="https://drive.google.com/file/d/1ihBtombsDoplQfhGhn_vEzsBKka0kQXY/view"
+              target="_blank"
+              className="w-full sm:w-auto text-center px-5 py-2.5 border border-zinc-700 text-zinc-300 rounded-md hover:bg-zinc-900"
+            >
+              Resume
+            </a>
+
+            <button
+              onClick={() => setShowTerminal((prev) => !prev)}
+              className="w-full sm:w-auto text-center text-sm px-4 py-2 rounded-md border border-zinc-700 text-zinc-400 hover:text-white hover:border-zinc-500 transition"
+            >
+              {showTerminal ? "Hide Terminal" : "Show Terminal"}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute right-6 top-52 -translate-y-1/2 flex flex-col gap-6 p-6 bg-accent-foreground/30 rounded-full"
+      {/* TERMINAL */}
+      <motion.div
+        initial={false}
+        animate={{
+          opacity: showTerminal ? 1 : 0,
+          y: showTerminal ? 0 : 10,
+          maxHeight: showTerminal ? 500 : 0,
+        }}
+        transition={{ duration: 0.3 }}
+        className="w-full overflow-hidden"
       >
-        <a
-          href={userData.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-400 hover:text-white transition-colors duration-300"
-        >
-          <FaGithub size={22} />
-        </a>
-        <a
-          href={userData.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
-        >
-          <FaLinkedin size={22} />
-        </a>
-        <a
-          href={userData.x}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-400 hover:text-gray-200 transition-colors duration-300"
-        >
-          <FaXTwitter size={22} />
-        </a>
-      </motion.div> */}
+        <div className="w-full flex justify-center px-3 sm:px-6 pb-4 sm:pb-6">
+          <Terminal setShowTerminal={setShowTerminal} />
+        </div>
+      </motion.div>
 
-      <div className="h-[500px] w-full bg-half-radial" />
-    </div>
+    </section>
   )
 }
