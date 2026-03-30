@@ -78,18 +78,18 @@ export const Background = () => {
               Resume
             </a>
 
-            <button
+            {/* <button
               onClick={() => setShowTerminal((prev) => !prev)}
               className="w-full sm:w-auto text-center text-sm px-4 py-2 rounded-md border border-zinc-700 text-zinc-400 hover:text-white hover:border-zinc-500 transition"
             >
               {showTerminal ? "Hide Terminal" : "Show Terminal"}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
 
       {/* TERMINAL */}
-      <motion.div
+      {/* <motion.div
         initial={false}
         animate={{
           opacity: showTerminal ? 1 : 0,
@@ -102,7 +102,7 @@ export const Background = () => {
         <div className="w-full flex justify-center px-3 sm:px-6 pb-4 sm:pb-6">
           <Terminal setShowTerminal={setShowTerminal} />
         </div>
-      </motion.div>
+      </motion.div> */}
 
     </section>
   )
