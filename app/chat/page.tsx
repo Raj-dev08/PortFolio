@@ -94,6 +94,7 @@ export default function ChatPage() {
       {/* HEADER */}
       <div className="border-b border-zinc-800 px-6 py-4">
         <h1 className="text-lg font-medium">AI Assistant</h1>
+        <p className="text-xs font-light">AI can hallucinate so double check the facts</p>
       </div>
 
       {/* MESSAGES */}

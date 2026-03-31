@@ -22,7 +22,6 @@ export default function Home() {
 
       {/* MAIN CONTENT */}
       <main className="flex flex-col no-scrollbar">
-
         <section id="background" className="pt-10 px-6 max-w-7xl mx-auto w-full">
           <Background />
         </section>

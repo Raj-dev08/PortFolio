@@ -9,7 +9,6 @@ const navItems = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "About", href: "#about" },
-  { label: "Contact", href: "#footer" },
 ]
 
 export const Navbar = () => {
@@ -17,7 +16,7 @@ export const Navbar = () => {
 
   return (
     <nav className="fixed top-4 right-4 z-50">
-      <div className="hidden sm:block lg:px-10  sm:p-2 rounded-lg bg-transparent backdrop-blur-md 2xl:mr-52">
+      <div className="hidden sm:block lg:px-10  sm:p-2 rounded-lg bg-black backdrop-blur-md 2xl:mr-52">
         <ul className="flex space-x-4">
           {navItems.map((item) => (
             <li key={item.href}>

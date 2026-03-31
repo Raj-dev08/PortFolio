@@ -7,68 +7,93 @@ import { MdEmail } from "react-icons/md"
 
 export const About = () => {
   return (
-    <section className="w-full min-h-[60vh] flex items-center justify-center px-6 bg-black text-white">
+    <section className="w-full min-h-[70vh] flex items-center justify-center px-6 bg-black text-white">
 
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.4 }}
         viewport={{ once: true }}
-        className="w-full max-w-2xl text-center"
+        className="w-full max-w-3xl text-center"
       >
 
-        {/* NAME + BASIC INFO */}
-        <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+        {/* NAME BLOCK */}
+        <div className="mb-10">
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
             {userData.name}
           </h1>
 
-          <p className="mt-2 text-zinc-400 text-sm sm:text-base">
-            17 years old · Builder · India
+          <p className="mt-3 text-zinc-400 text-sm sm:text-base">
+            17 · Fullstack Developer · India
           </p>
+
+          {/* TAGS */}
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {["Backend", "DevOps", "AI Systems", "Builder"].map((tag) => (
+              <span
+                key={tag}
+                className="text-xs px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* ABOUT TEXT */}
-        <div className="text-sm sm:text-base text-zinc-400 space-y-3 leading-relaxed">
-          <p>
-            Hi I am Souptik but you can call me Raj , I’m a fullstack developer with devops and ai knowledge
-          </p>
-          
-          <p>
-            I’ve been building things since 2024 starting out of curiosity, and
-            slowly turning it into a habit of creating and improving systems.
-          </p>
+        {/* ABOUT CARDS */}
+        <div className="grid gap-3 text-left text-sm sm:text-base text-zinc-400 leading-relaxed">
 
-          <p>
-            I enjoy working on ideas that feel alive not just code, but things
-            that actually do something useful or interesting.
-          </p>
+          <div className="p-4 rounded-xl border border-zinc-900 bg-zinc-950/40">
+            Started coding journey in 2024 and trying to learn and improve since then
+          </div>
 
-          <p>
-            Outside of tech, I’m into sports and science  anything that involves
-            patterns, competition, or understanding how things work.
-          </p>
+          <div className="p-4 rounded-xl border border-zinc-900 bg-zinc-950/40">
+            I focus on real-world systems: backend architecture, AI flows,
+            automation, and scalable fullstack apps
+          </div>
+
+          <div className="p-4 rounded-xl border border-zinc-900 bg-zinc-950/40">
+            I like building things that feel “alive”  not static projects,
+            but systems that react, adapt, and evolve with users and data
+          </div>
+
+          <div className="p-4 rounded-xl border border-zinc-900 bg-zinc-950/40">
+            Some of my projects might have cold start due to free tier hosting planning to move them to better hosting in future
+          </div>
+
         </div>
-
-        
 
         {/* CONTACT */}
-        <div className="mt-8 flex items-center justify-center gap-6">
-          <a href={userData.github} className="text-zinc-500 hover:text-white">
+        <div className="mt-10 flex items-center justify-center gap-6">
+
+          <a
+            href={userData.github}
+            className="p-2 rounded-full  transition hover:scale-110"
+          >
             <FaGithub size={20} />
           </a>
 
-          <a href={userData.linkedin} className="text-zinc-500 hover:text-blue-500">
+          <a
+            href={userData.linkedin}
+            className="p-2 rounded-full  hover:text-blue-400 transition hover:scale-110"
+          >
             <FaLinkedin size={20} />
           </a>
 
-          <a href={userData.x} className="text-zinc-500 hover:text-white">
+          <a
+            href={userData.x}
+            className="p-2 rounded-full  transition hover:scale-110"
+          >
             <FaXTwitter size={20} />
           </a>
 
-          <a href={userData.email} className="text-zinc-500 hover:text-green-500">
+          <a
+            href={`mailto:${userData.email}`}
+            className="p-2 rounded-full  hover:text-green-400 transition hover:scale-110"
+          >
             <MdEmail size={20} />
           </a>
+
         </div>
 
       </motion.div>

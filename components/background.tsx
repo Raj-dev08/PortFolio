@@ -1,20 +1,9 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
-import { Terminal } from "./terminal"
-
 export const Background = () => {
-  const [showTerminal, setShowTerminal] = useState(true)
-
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setShowTerminal(false)
-    }
-  }, [])
 
   return (
-    <section className="w-full min-h-screen flex flex-col bg-black">
+    <section className="w-full min-h-screen flex flex-col ">
 
       {/* HERO */}
       <div className="flex-1 flex items-center justify-center md:justify-start px-4 sm:px-6 lg:px-24 py-10">
@@ -71,39 +60,15 @@ export const Background = () => {
             </a>
 
             <a
-              href="https://drive.google.com/file/d/1ihBtombsDoplQfhGhn_vEzsBKka0kQXY/view"
-              target="_blank"
+              href="/resume.pdf"
+              download="Souptik_Sen_Resume.pdf"
               className="w-full sm:w-auto text-center px-5 py-2.5 border border-zinc-700 text-zinc-300 rounded-md hover:bg-zinc-900"
             >
               Resume
             </a>
-
-            {/* <button
-              onClick={() => setShowTerminal((prev) => !prev)}
-              className="w-full sm:w-auto text-center text-sm px-4 py-2 rounded-md border border-zinc-700 text-zinc-400 hover:text-white hover:border-zinc-500 transition"
-            >
-              {showTerminal ? "Hide Terminal" : "Show Terminal"}
-            </button> */}
           </div>
         </div>
       </div>
-
-      {/* TERMINAL */}
-      {/* <motion.div
-        initial={false}
-        animate={{
-          opacity: showTerminal ? 1 : 0,
-          y: showTerminal ? 0 : 10,
-          maxHeight: showTerminal ? 500 : 0,
-        }}
-        transition={{ duration: 0.3 }}
-        className="w-full overflow-hidden"
-      >
-        <div className="w-full flex justify-center px-3 sm:px-6 pb-4 sm:pb-6">
-          <Terminal setShowTerminal={setShowTerminal} />
-        </div>
-      </motion.div> */}
-
     </section>
   )
 }
