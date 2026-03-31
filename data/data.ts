@@ -161,7 +161,7 @@ export const userData: UserData = {
       type: ["mobile","fullstack"],
       status: "demo ready",
       link: "https://github.com/Raj-dev08/SocietyManager",
-      liveLink: "/society-demo.mp4", // fix this like resume (no drive)
+      liveLink: "https://drive.google.com/file/d/1ZKrZW0PHseG3qVWGcLpbEFrQs_NXCYQP/view", 
       tech: [
         { name: "React Native (Expo)", icon: SiExpo },
         { name: "Node.js", icon: SiNodedotjs },
