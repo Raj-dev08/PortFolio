@@ -44,10 +44,6 @@ export const About = () => {
         <div className="grid gap-3 text-left text-sm sm:text-base text-zinc-400 leading-relaxed">
 
           <div className="p-4 rounded-xl border border-zinc-900 bg-zinc-950/40">
-            Started coding journey in 2024 and trying to learn and improve since then
-          </div>
-
-          <div className="p-4 rounded-xl border border-zinc-900 bg-zinc-950/40">
             I focus on real-world systems: backend architecture, AI flows,
             automation, and scalable fullstack apps
           </div>
@@ -55,10 +51,6 @@ export const About = () => {
           <div className="p-4 rounded-xl border border-zinc-900 bg-zinc-950/40">
             I like building things that feel “alive”  not static projects,
             but systems that react, adapt, and evolve with users and data
-          </div>
-
-          <div className="p-4 rounded-xl border border-zinc-900 bg-zinc-950/40">
-            Some of my projects might have cold start due to free tier hosting planning to move them to better hosting in future
           </div>
 
         </div>

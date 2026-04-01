@@ -16,11 +16,10 @@ export const Background = () => {
 
           {/* headline */}
           <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white leading-snug sm:leading-tight">
-            Full-stack engineer building{" "}
             <span className="text-purple-400">
-              distributed backend systems
+              Backend Heavy
             </span>{" "}
-            and{" "}
+            Full-stack engineer building{" "}
             <span className="text-purple-400">
               AI-driven products
             </span>
@@ -28,8 +27,8 @@ export const Background = () => {
 
           {/* description */}
           <p className="text-sm sm:text-base lg:text-lg text-zinc-400 max-w-xl sm:max-w-2xl leading-relaxed">
-            Works on production-grade Node.js systems with queues, Redis, microservices,
-            and real-time architecture. Builds AI pipelines using embeddings, RAG,
+            Working on production-grade systems with queues, Redis, microservices,
+            and real-time architecture. Building AI pipelines using embeddings, RAG,
             and long-term memory systems.
           </p>
 

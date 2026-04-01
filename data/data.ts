@@ -114,7 +114,8 @@ export const userData: UserData = {
     {
       name: "Partner AI",
       description:
-        "AI companion that stores conversations, understands context over time, and responds with personality using a memory system built on vector search and async processing.",
+        `AI companion that initiates conversations and builds long-term memory using embeddings + RAG.
+        Designed with async workers, Redis caching, and vector memory to simulate human-like interaction and context retention.`,
       index: 1,
       type: ["ai","fullstack"],
       status: "active",
@@ -136,7 +137,8 @@ export const userData: UserData = {
     {
       name: "HackIT Platform",
       description:
-        "Distributed hackathon platform where multiple services communicate through events, enabling real-time chat and scalable system coordination.",
+        `Distributed microservices platform for hackathon discovery and team collaboration.
+        Built with Kafka, Redis, and Socket.IO for real-time communication, with end-to-end encrypted messaging and scalable service architecture.`,
       index: 2,
       type: ["microservices","fullstack"],
       status: "active",
@@ -156,7 +158,8 @@ export const userData: UserData = {
     {
       name: "Society Manager App",
       description:
-        "Mobile SaaS app that manages users, payments, and communication across roles with backend automation and AI-based insights.",
+        `Cross-platform mobile app for managing residential societies with multiple features.
+        Includes AI-powered insights for tenant analysis, built using React Native, Node.js, and Redis-backed services.`,
       index: 3,
       type: ["mobile","fullstack"],
       status: "demo ready",
@@ -174,7 +177,8 @@ export const userData: UserData = {
     {
       name: "Project Helper",
       description:
-        "Collaboration platform with real-time messaging and video calls, handling multiple users with low-latency communication and cached data.",
+        `Developer collaboration platform for sharing projects, feedback, and finding teammates.
+        Designed with real-time features, Dockerized services, CI/CD pipelines, and monitoring for production-level reliability.`,
       index: 4,
       type: ["fullstack"],
       status: "completed",
