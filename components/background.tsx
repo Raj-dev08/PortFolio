@@ -59,7 +59,7 @@ export const Background = () => {
             </a>
 
             <a
-              href="/resume.pdf"
+              href="/myresume.pdf"
               download="Souptik_Sen_Resume.pdf"
               className="w-full sm:w-auto text-center px-5 py-2.5 border border-zinc-700 text-zinc-300 rounded-md hover:bg-zinc-900"
             >
