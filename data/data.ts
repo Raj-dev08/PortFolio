@@ -6,7 +6,8 @@ import {
   SiPrometheus, SiExpo, SiSocketdotio, SiJest , SiPytorch, 
   SiOpenai,
   SiTailwindcss,
-  SiAxios
+  SiAxios,
+  SiPostgresql
 } from "react-icons/si"
 
 import { FaDatabase } from "react-icons/fa6"
@@ -62,7 +63,7 @@ export const userData: UserData = {
   github: "https://github.com/Raj-dev08",
   linkedin: "https://www.linkedin.com/in/souptik-sen-442152365",
   x: "https://x.com/SouptikSen08",
-  email: "mailto:souptiksena@gmail.com",
+  email: "souptiksena@gmail.com",
 
   skills: {
     languages: [
@@ -85,6 +86,7 @@ export const userData: UserData = {
 
     databases: [
       { name: "MongoDB", icon: SiMongodb },
+      { name: "PostgreSQL", icon: SiPostgresql },
       { name: "Redis", icon: SiRedis },
       { name: "Vector DB (Pinecone)", icon: FaDatabase }
     ],
@@ -128,6 +130,7 @@ export const userData: UserData = {
         { name: "Redis Pub/Sub (Event-Driven Architecture)" },
         { name: "Socket.IO (Real-time Communication)", icon: SiSocketdotio },
         { name: "MongoDB", icon: SiMongodb },
+        { name: "PostgreSQL", icon: SiPostgresql },
         { name: "Vector DB", icon: FaDatabase },
         { name: "OpenAI API", icon: SiOpenai },
         { name: "React", icon: SiReact }

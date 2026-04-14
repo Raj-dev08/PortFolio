@@ -17,11 +17,11 @@ export const Footer = () => {
         <h3 className="text-gray-400 mr-4">
       
         <a
-            href={email}
+            href={`mailto:${email}`}
             className="flex items-center justify-center gap-2 text-gray-400 hover:text-purple-400 transition-colors"
         >
             <FaEnvelope className="w-4 h-4" />
-            {email.replace("mailto:", "")}
+            {email}
         </a>
         </h3>
 
