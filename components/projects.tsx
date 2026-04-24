@@ -230,9 +230,19 @@ export const Projects = () => {
                             </div>
                           </CardHeader>
                           <CardContent>
-                            <p className="text-sm text-zinc-300">
-                              {project.description}
-                            </p>
+                            <div className="space-y-3 text-sm">
+                              <p className="text-zinc-100 font-medium">
+                                {project.summary}
+                              </p>
+                              <p className="text-zinc-400">
+                                <span className="text-zinc-500">How it works: </span> {project.build}
+                              </p>
+                              {project.description && (
+                                <p className="text-zinc-500 text-xs leading-relaxed">
+                                  {project.description}
+                                </p>
+                              )}
+                            </div>
                             <div className="mt-4 flex flex-wrap gap-2">
                               {project.tech?.map((t, i) => (
                                 <div
@@ -325,9 +335,19 @@ export const Projects = () => {
                             </div>
                           </CardHeader>
                           <CardContent>
-                            <p className="text-sm text-zinc-300">
-                              {project.description}
-                            </p>
+                            <div className="space-y-3 text-sm">
+                              <p className="text-zinc-100 font-medium">
+                                {project.summary}
+                              </p>
+                              <p className="text-zinc-400">
+                                <span className="text-zinc-500">How it works: </span> {project.build}
+                              </p>
+                              {project.description && (
+                                <p className="text-zinc-500 text-xs leading-relaxed">
+                                  {project.description}
+                                </p>
+                              )}
+                            </div>
                             <div className="mt-4 flex flex-wrap gap-2">
                               {project.tech?.map((t, i) => (
                                 <div

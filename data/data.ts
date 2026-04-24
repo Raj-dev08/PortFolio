@@ -18,10 +18,12 @@ import { ImTree } from "react-icons/im"
 
 export interface Project {
   name: string
-  description?: string
+  summary: string        // what it does (1 line)
+  build: string          // how it's built (1 line)
+  description?: string   // optional longer explanation
   link?: string
   liveLink?: string
-  type?: string[],
+  type?: string[]
   tech?: SkillItem[]
   index: number
   status?: "completed" | "active" | "wip" | "demo ready"
@@ -115,11 +117,14 @@ export const userData: UserData = {
   projects: [
     {
       name: "Partner AI",
+      summary:
+        "AI companion that remembers you and actually starts conversations on its own.",
+      build:
+        "Embeddings + RAG for memory, Redis for short-term context, async workers handling processing, real-time chat over sockets.",
       description:
-        `AI companion that initiates conversations and builds long-term memory using embeddings + RAG.
-        Designed with async workers, Redis caching, and vector memory to simulate human-like interaction and context retention.`,
+        "Focused on making interactions feel persistent and human, not stateless chatbot replies.",
       index: 1,
-      type: ["ai","fullstack"],
+      type: ["ai", "fullstack"],
       status: "active",
       link: "https://github.com/Raj-dev08/PartnerAI",
       liveLink: "https://partner-ai-roan.vercel.app/",
@@ -127,8 +132,7 @@ export const userData: UserData = {
         { name: "Node.js", icon: SiNodedotjs },
         { name: "Redis", icon: SiRedis },
         { name: "BullMQ (Async Workers)" },
-        { name: "Redis Pub/Sub (Event-Driven Architecture)" },
-        { name: "Socket.IO (Real-time Communication)", icon: SiSocketdotio },
+        { name: "Socket.IO", icon: SiSocketdotio },
         { name: "MongoDB", icon: SiMongodb },
         { name: "PostgreSQL", icon: SiPostgresql },
         { name: "Vector DB", icon: FaDatabase },
@@ -139,49 +143,58 @@ export const userData: UserData = {
 
     {
       name: "HackIT Platform",
+      summary:
+        "Platform to discover hackathons, form teams, and collaborate in real-time.",
+      build:
+        "Event-driven microservices with Kafka + Redis, real-time end-to-end encrypted communication via sockets, async workers for scalability.",
       description:
-        `Distributed microservices platform for hackathon discovery and team collaboration.
-        Built with Kafka, Redis, and Socket.IO for real-time communication, with end-to-end encrypted messaging and scalable service architecture.`,
+        "Designed to handle multiple users interacting simultaneously without turning into a mess.",
       index: 2,
-      type: ["microservices","fullstack"],
+      type: ["microservices", "fullstack"],
       status: "active",
       link: "https://github.com/Raj-dev08/HackIT",
       tech: [
         { name: "Node.js", icon: SiNodedotjs },
         { name: "Redis", icon: SiRedis },
         { name: "MongoDB", icon: SiMongodb },
-        { name: "Kafka", icon: ImTree },       
+        { name: "Kafka", icon: ImTree },
         { name: "BullMQ (Async Workers)" },
         { name: "Socket.IO", icon: SiSocketdotio },
         { name: "Docker", icon: SiDocker },
-        { name: "React", icon: SiReact },
+        { name: "React", icon: SiReact }
       ]
     },
 
     {
       name: "Society Manager App",
+      summary:
+        "All-in-one app to manage societies, tenants, and daily operations.",
+      build:
+        "React Native frontend with a Node backend, Redis for fast access, and AI features for insights.",
       description:
-        `Cross-platform mobile app for managing residential societies with multiple features.
-        Includes AI-powered insights for tenant analysis, built using React Native, Node.js, and Redis-backed services.`,
+        "Includes multi-role access, tenant handling, and AI-based suggestions for better decision making.",
       index: 3,
-      type: ["mobile","fullstack"],
+      type: ["mobile", "fullstack"],
       status: "demo ready",
       link: "https://github.com/Raj-dev08/SocietyManager",
-      liveLink: "https://drive.google.com/file/d/1ZKrZW0PHseG3qVWGcLpbEFrQs_NXCYQP/view", 
+      liveLink: "https://drive.google.com/file/d/1ZKrZW0PHseG3qVWGcLpbEFrQs_NXCYQP/view",
       tech: [
         { name: "React Native (Expo)", icon: SiExpo },
         { name: "Node.js", icon: SiNodedotjs },
         { name: "MongoDB", icon: SiMongodb },
         { name: "Redis", icon: SiRedis },
-        { name: "AI Insights (OpenAI API)", icon: SiOpenai },
+        { name: "OpenAI API", icon: SiOpenai }
       ]
     },
 
     {
       name: "Project Helper",
+      summary:
+        "Place for devs to share projects, get feedback, and find collaborators.",
+      build:
+        "Full-stack app with real-time updates, Dockerized services, CI/CD pipelines, and monitoring in place.",
       description:
-        `Developer collaboration platform for sharing projects, feedback, and finding teammates.
-        Designed with real-time features, Dockerized services, CI/CD pipelines, and monitoring for production-level reliability.`,
+        "Built like a production system with focus on reliability, not just features.",
       index: 4,
       type: ["fullstack"],
       status: "completed",
@@ -194,12 +207,36 @@ export const userData: UserData = {
         { name: "Redis", icon: SiRedis },
         { name: "MongoDB", icon: SiMongodb },
         { name: "Docker", icon: SiDocker },
-        { name: "Jenkins (CI/CD)", icon: FaJenkins },
-        { name: "Jest (Testing)", icon: SiJest  },
-        { name: "Prometheus (Monitoring)", icon: SiPrometheus }
+        { name: "Jenkins", icon: FaJenkins },
+        { name: "Jest", icon: SiJest },
+        { name: "Prometheus", icon: SiPrometheus }
       ]
     },
+
+    {
+      name: "AI Wardrobe",
+      summary:
+        "Suggests what to wear based on your event using your own wardrobe.",
+      build:
+        "LLM generates outfit intent, embeddings match it against your clothes, backend handles image cleanup and previews.",
+      description:
+        "You upload clothes once, system figures out what works for different situations and shows a rough preview.",
+      index: 5,
+      type: ["ai", "fullstack"],
+      status: "demo ready",
+      liveLink: "https://drive.google.com/file/d/1hfaf_DuUvrB02QkX1GoM49nTQcnwEUd9/view?usp=sharing",
+      link: "https://github.com/Raj-dev08/AiWardrobe",
+      tech: [
+        { name: "Node.js", icon: SiNodedotjs },
+        { name: "MongoDB", icon: SiMongodb },
+        { name: "Redis", icon: SiRedis },
+        { name: "Vector DB", icon: FaDatabase },
+        { name: "OpenAI API", icon: SiOpenai },
+        { name: "React", icon: SiReact }
+      ]
+    }
   ],
+
   context: `
     Souptik Sen (Raj) is a 17-year-old full-stack engineer focused on building scalable backend systems, real-time applications, and AI-driven products.
 
