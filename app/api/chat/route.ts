@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
     
     
     const response = await openai.chat.completions.create({
-        model: "meta/llama-3.1-8b-instruct",
+        model: "nvidia/nemotron-3-super-120b-a12b",
         messages: [
             {
                 role: "system",
