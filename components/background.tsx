@@ -1,19 +1,7 @@
 "use client"
+import MagicButton from "./MagicButton"
 
 export const Background = () => {
-  const getAge = () => {
-    const birthDate = new Date(2008, 5, 6); 
-    const today = new Date();
-
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-
-    return age;
-  };
   return (
     <section className="w-full min-h-screen flex flex-col ">
 
@@ -23,7 +11,7 @@ export const Background = () => {
 
           {/* identity line */}
           <p className="text-sm sm:text-base md:text-lg font-medium text-zinc-400 tracking-wide">
-            Souptik Sen · {getAge()} · Kolkata, India
+            Souptik Sen · Kolkata, India
           </p>
 
           {/* headline */}
@@ -78,6 +66,9 @@ export const Background = () => {
               Resume
             </a>
           </div>
+          
+          <MagicButton key={Date.now()}/>
+
         </div>
       </div>
     </section>

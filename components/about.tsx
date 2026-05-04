@@ -6,19 +6,6 @@ import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6"
 import { MdEmail } from "react-icons/md"
 
 export const About = () => {
-  const getAge = () => {
-    const birthDate = new Date(2008, 5, 6); 
-    const today = new Date();
-
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-
-    return age;
-  };
   return (
     <section className="w-full min-h-[70vh] flex items-center justify-center px-6 bg-black text-white">
 
@@ -37,7 +24,7 @@ export const About = () => {
           </h1>
 
           <p className="mt-3 text-zinc-400 text-sm sm:text-base">
-            {getAge()} · Fullstack Developer · India
+            Fullstack Developer · India
           </p>
 
           {/* TAGS */}
